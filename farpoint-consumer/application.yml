@@ -1,0 +1,11 @@
+queueName: encounters
+exchangeName: farpoint
+routingKey: key
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: picard
+    password: engage
+    listener.simple.acknowledge-mode: manual

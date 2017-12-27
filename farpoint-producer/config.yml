@@ -1,0 +1,15 @@
+logging:
+  level: INFO
+  loggers:
+    com.willhamill: DEBUG
+
+queueConfiguration:
+  queueName: encounters
+  exchangeName: farpoint
+  queueHost: localhost
+  port: 5672
+  routingKey: key
+  user: picard
+  # don't use plaintext passwords in config in production obviously
+  password: engage
+
