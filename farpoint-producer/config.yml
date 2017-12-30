@@ -6,10 +6,10 @@ logging:
 queueConfiguration:
   queueName: encounters
   exchangeName: farpoint
-  queueHost: localhost
+  queueHost: docker.for.mac.localhost
   port: 5672
   routingKey: key
   user: picard
   # don't use plaintext passwords in config in production obviously
-  password: engage
+  password: makeitsonumberone
 

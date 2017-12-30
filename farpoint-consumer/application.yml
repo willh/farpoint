@@ -4,8 +4,8 @@ routingKey: key
 
 spring:
   rabbitmq:
-    host: localhost
+    host: docker.for.mac.localhost
     port: 5672
     username: picard
-    password: engage
+    password: makeitsonumberone
     listener.simple.acknowledge-mode: manual

@@ -11,5 +11,5 @@ apt-get -qy update
 apt-get -qy install rabbitmq-server
 
 rabbitmqctl delete_user guest
-rabbitmqctl add_user picard engage
+rabbitmqctl add_user picard makeitsonumberone
 rabbitmqctl set_permissions picard ".*" ".*" ".*"
