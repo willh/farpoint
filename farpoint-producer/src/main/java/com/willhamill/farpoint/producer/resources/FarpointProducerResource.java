@@ -26,6 +26,6 @@ public class FarpointProducerResource {
         queueClient.setupQueue();
         queueClient.sendMessage(message);
         queueClient.closeConnection();
-        return "message sent: " + message;
+        return "message sent: " + message + "\n";
     }
 }
