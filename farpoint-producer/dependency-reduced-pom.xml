@@ -4,7 +4,7 @@
   <groupId>com.willhamill</groupId>
   <artifactId>farpoint-producer</artifactId>
   <name>FarpointProducer</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <prerequisites>
     <maven>3.0.0</maven>
   </prerequisites>
