@@ -69,4 +69,13 @@ public class QueueConfiguration {
     public String getPassword() {
         return password;
     }
+
+    @Valid
+    @NotNull
+    @JsonProperty
+    private int timeoutMillis;
+
+    public int getTimeoutMillis() {
+        return timeoutMillis;
+    }
 }

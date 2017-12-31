@@ -39,6 +39,7 @@ public class QueueClient {
         factory.setPort(config.getPort());
         factory.setUsername(config.getUser());
         factory.setPassword(config.getPassword());
+        factory.setConnectionTimeout(config.getTimeoutMillis());
         connection = factory.newConnection();
 
         channel = connection.createChannel();
