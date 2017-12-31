@@ -1,15 +1,11 @@
-#!/bin/sh
-cat <<EOF > /etc/apt/sources.list.d/rabbitmq.list
-deb http://www.rabbitmq.com/debian/ testing main
-EOF
+# firstly install pre-requisites of erlang (from source - AMI version is too old) 
+# and then install latest rabbitmq
+# https://www.freshlex.com/install-rabbitmq-and-minimal-erlang-on-amazon-linux.html
+# go make a cup of tea, the `make` command takes a while 
+# now configure it
+sudo rabbitmq-plugins enable rabbitmq_management
 
-curl https://www.rabbitmq.com/rabbitmq-release-signing-key.asc -o /tmp/rabbitmq-release-signing-key.asc
-apt-key add /tmp/rabbitmq-release-signing-key.asc
-rm /tmp/rabbitmq-release-signing-key.asc
-
-apt-get -qy update
-apt-get -qy install rabbitmq-server
-
-rabbitmqctl delete_user guest
-rabbitmqctl add_user picard makeitsonumberone
-rabbitmqctl set_permissions picard ".*" ".*" ".*"
+sudo rabbitmqctl delete_user guest
+sudo rabbitmqctl add_user picard makeitsonumberone
+sudo rabbitmqctl set_user_tags picard administrator
+sudo rabbitmqctl set_permissions picard ".*" ".*" ".*"
