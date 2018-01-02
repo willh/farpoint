@@ -1,6 +1,7 @@
 queueName: encounters
 exchangeName: farpoint
 routingKey: key
+workFactorMillis: 10000
 
 spring:
   rabbitmq:
