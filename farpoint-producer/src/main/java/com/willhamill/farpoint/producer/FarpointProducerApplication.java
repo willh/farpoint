@@ -33,7 +33,7 @@ public class FarpointProducerApplication extends Application<FarpointProducerCon
 
         environment.jersey().register(farpointProducerResource);
 
-        environment.healthChecks().register("farpoint-producer", new FarpointProducerHealthcheck());
+        environment.healthChecks().register("farpoint-producer", new FarpointProducerHealthcheck(queueClient));
     }
 
 }

@@ -24,8 +24,8 @@ public class QueueClient {
         createQueue();
     }
 
-    public void sendMessage(String message) throws IOException {
-        channel.basicPublish(config.getExchangeName(), config.getRoutingKey(), null, message.getBytes());
+    public void sendMessage(byte[] payload) throws IOException {
+        channel.basicPublish(config.getExchangeName(), config.getRoutingKey(), null, payload);
     }
 
     public void closeConnection() throws IOException {
@@ -33,7 +33,7 @@ public class QueueClient {
         connection.close();
     }
 
-    private void openConnection() throws IOException {
+    public void openConnection() throws IOException {
         factory = new ConnectionFactory();
         factory.setHost(config.getQueueHost());
         factory.setPort(config.getPort());

@@ -1,6 +1,7 @@
 package com.willhamill.farpoint.consumer;
 
 import com.rabbitmq.client.Channel;
+import com.willhamill.farpoint.consumer.model.FarpointMessage;
 
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -16,14 +17,13 @@ public class MessageReceiver {
     private int workFactorMillis;
 
     @RabbitListener(queues = "${queueName}")
-    public void receiveMessage(byte[] message, Message originalMessage, Channel channel) throws InterruptedException, IOException {
-        System.out.println("Parsing message");
-        String msg = new String(message);
+    public void receiveMessage(FarpointMessage fpMessage, Message originalMessage, Channel channel) throws InterruptedException, IOException {
+        System.out.println("Received message");
 
         // simulate doing some actual work (anything taking longer than 5s will run beyond soft shutdown grace period)
         Thread.sleep(workFactorMillis);
 
-        System.out.println("Processed message: <"+ msg + ">");
+        System.out.println("Processed message: <"+ fpMessage.toString()+ ">");
 
         // acknowledge the message [in this sample I prefer manual acks so if process dies, message stays on queue]
         channel.basicAck(originalMessage.getMessageProperties().getDeliveryTag(), false);
