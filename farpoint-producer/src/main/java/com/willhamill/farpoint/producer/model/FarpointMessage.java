@@ -1,13 +1,18 @@
 package com.willhamill.farpoint.producer.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.willhamill.farpoint.producer.serialisation.LocalDateTimeDeserialiser;
+import com.willhamill.farpoint.producer.serialisation.LocalDateTimeSerialiser;
+
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public final class FarpointMessage implements Serializable {
 
     private String subject;
     private String content;
-    private Date sendTime;
+    private LocalDateTime sendTime;
 
     public String getSubject() {
         return subject;
@@ -17,14 +22,16 @@ public final class FarpointMessage implements Serializable {
         return content;
     }
 
-    public Date getSendTime() {
+    @JsonSerialize(using = LocalDateTimeSerialiser.class)
+    @JsonDeserialize(using = LocalDateTimeDeserialiser.class)
+    public LocalDateTime getSendTime() {
         return sendTime;
     }
 
     public FarpointMessage() {
     }
 
-    public FarpointMessage(String subject, String content, Date sendTime) {
+    public FarpointMessage(String subject, String content, LocalDateTime sendTime) {
         this.subject = subject;
         this.content = content;
         this.sendTime = sendTime;
@@ -37,5 +44,17 @@ public final class FarpointMessage implements Serializable {
                 ", content='" + content + '\'' +
                 ", sendTime=" + sendTime +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FarpointMessage that = (FarpointMessage) o;
+
+        if (subject != null ? !subject.equals(that.subject) : that.subject != null) return false;
+        if (content != null ? !content.equals(that.content) : that.content != null) return false;
+        return sendTime != null ? sendTime.equals(that.sendTime) : that.sendTime == null;
     }
 }

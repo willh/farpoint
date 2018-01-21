@@ -29,7 +29,8 @@ public class FarpointProducerApplication extends Application<FarpointProducerCon
     public void run(final FarpointProducerConfiguration configuration,
                     final Environment environment) throws IOException {
         QueueClient queueClient = new QueueClient(configuration.getQueueConfiguration());
-        FarpointProducerResource farpointProducerResource = new FarpointProducerResource(queueClient);
+        MessageGeneratorService msgService = new MessageGeneratorService();
+        FarpointProducerResource farpointProducerResource = new FarpointProducerResource(queueClient, msgService);
 
         environment.jersey().register(farpointProducerResource);
 

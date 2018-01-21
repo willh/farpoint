@@ -22,9 +22,9 @@ public class FarpointProducerResource {
     private QueueClient queueClient;
     private MessageGeneratorService msgService;
 
-    public FarpointProducerResource(QueueClient queueClient){
+    public FarpointProducerResource(QueueClient queueClient, MessageGeneratorService msgService){
         this.queueClient = queueClient;
-        this.msgService = new MessageGeneratorService();
+        this.msgService = msgService;
     }
 
     @Timed
